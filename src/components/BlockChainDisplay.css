@@ -1,0 +1,23 @@
+.BlockChainDisplay {
+    margin-top : 10px;
+}
+.alert.alert-info {
+    margin-bottom: 0px;
+}
+
+.tamperingButtons {
+    padding-top: 5px;
+}
+
+.recordBlock {
+    
+    margin-bottom: 15px;
+}
+
+.delete-button-row {
+    text-align: right;
+}
+
+h3 {
+    font-size: 120%;
+}

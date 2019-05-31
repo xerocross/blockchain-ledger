@@ -1,11 +1,5 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
-  pointer-events: none;
+  padding-top: 10px;
 }
 
 .App-header {
@@ -18,6 +12,27 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+.alert.alert-info {
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
+.editor {
+  margin-bottom: 10px;
+}
+.blockchain-list {
+  margin-top : 10px;
+  margin-bottom: 10px;
+}
+
+.block {
+  margin-bottom: 15px;
+}
+
+.block.is-invalid {
+    border-color: red;
+  }
+
 
 .App-link {
   color: #61dafb;
