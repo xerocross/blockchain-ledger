@@ -1,8 +1,9 @@
-import debounce from "lodash.debounce";
+// eslint-disable-next-line no-unused-vars
 import React,{Component} from "react";
 import {createStore} from 'redux';
 import {Actions,AppReducer} from "../app-reducer";
 import {persistStateToStorage} from "../bottle";
+import debounce from "lodash.debounce";
 import BlockWriter from "./BlockWriter";
 import RecordChainDisplay from "./RecordChainDisplay";
 import TamperingEditor from "./TamperingEditor";
@@ -12,8 +13,8 @@ class BlockchainLedger extends Component {
     constructor () {
         super();
         this.state = {
-          blockChain : undefined,
-          tampering : null
+            blockChain : undefined,
+            tampering : null
         };
         this.store = createStore(AppReducer);
         this.updateFromStore = this.updateFromStore.bind(this);
@@ -28,69 +29,74 @@ class BlockchainLedger extends Component {
     }
 
     updateFromStore () {
-      let storeState = this.store.getState();
-      this.setState({
-        blockChain : storeState.blockChain
-      });
+        let storeState = this.store.getState();
+        this.setState({
+            blockChain : storeState.blockChain
+        });
     }
 
     delete (block) {
-      if (window.confirm("Really delete this record?")) {
-        this.store.dispatch(Actions.getDeleteBlockAction(block));
-      }
+        if (window.confirm("Really delete this record?")) {
+            this.store.dispatch(Actions.getDeleteBlockAction(block));
+        }
     }
 
-    tamper (block, data) {
-      this.setState({tampering : block});
+    tamper (block) {
+        this.setState({tampering : block});
     }
 
 
-    recordTampering(block, data) {
-      this.setState({tampering : null});
-      this.store.dispatch(Actions.getTamperBlockAction(block, data));
+    recordTampering (block, data) {
+        this.setState({tampering : null});
+        this.store.dispatch(Actions.getTamperBlockAction(block, data));
     }
 
     deleteAll () {
-      if (window.confirm("Really delete all records?")) {
-        this.store.dispatch(Actions.DELETE_RECORDS);
-      }
+        if (window.confirm("Really delete all records?")) {
+            this.store.dispatch(Actions.DELETE_RECORDS);
+        }
     }
 
     componentDidMount () {
       
-      this.updateFromStore();
-        this.store.subscribe(() => {
-          let storeState = this.store.getState();
-          this.updateFromStore();
-          this.updateStorage(storeState);
+        this.updateFromStore();
+        this.unsubscribe = this.store.subscribe(() => {
+            let storeState = this.store.getState();
+            this.updateFromStore();
+            this.updateStorage(storeState);
         });
-      }
-      render() {
+    }
+
+    componentWillUnmount () {
+        this.unsubscribe();
+    }
+
+    render () {
         return (
             <div className="App container">
-              {this.state.tampering === null &&
-                <div>
+                {this.state.tampering === null &&
+              <div>
                   <BlockWriter
-                    store = {this.store}
+                      store = {this.store}
                   />
                   <RecordChainDisplay 
-                    blockChain  = {this.state.blockChain} 
-                    delete = {this.delete}
-                    tamper = {this.tamper}
-                    deleteAll = {this.deleteAll}
-                  
+                      blockChain  = {this.state.blockChain} 
+                      delete = {this.delete}
+                      tamper = {this.tamper}
+                      deleteAll = {this.deleteAll}
+                
                   />
-                </div>
-              }
-              {this.state.tampering !== null && 
-                <TamperingEditor 
+              </div>
+                }
+                {this.state.tampering !== null && 
+              <TamperingEditor 
                   block = {this.state.tampering} 
                   recordTampering = {this.recordTampering}
-                />
-              }
+              />
+                }
             </div>
         );
-      }
+    }
 
 }
 

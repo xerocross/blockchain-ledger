@@ -1,18 +1,15 @@
-
 import React,{Component} from "react";
 import "./BlockChainDisplay.css";
 import ChainCorruptedMessage from "./ChainCorruptedMessage";
 import RecordChainTable from "./RecordChainTable";
 
 class RecordChainDisplay extends Component {
-
-    constructor() {
+    constructor () {
         super();
         this.state = {
             tampering : undefined,
         }
     }
-
     getIsListValid () {
         let chain = this.props.blockChain;
         let list = chain.toList();
@@ -21,9 +18,6 @@ class RecordChainDisplay extends Component {
         }
         return true;
     }
-
-    
-
     render () {
         let chain = this.props.blockChain;
         return (
