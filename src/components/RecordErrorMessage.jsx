@@ -1,8 +1,7 @@
-/* eslint-disable no-unused-vars */
 import React,{Component} from "react";
 
 class RecordErrorMessage extends Component {
-    constructor() {
+    constructor () {
         super();
         this.state = {
             showErrorDetails : false
@@ -17,7 +16,7 @@ class RecordErrorMessage extends Component {
         });
     }
 
-    render() {
+    render () {
         return (
             <div>
                 <div className = "alert alert-danger">

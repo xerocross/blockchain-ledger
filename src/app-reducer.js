@@ -15,7 +15,7 @@ export const Actions = {
             value : block
         }
     },
-    getTamperBlockAction(block, newData) {
+    getTamperBlockAction (block, newData) {
         return {
             type : "TAMPER_BLOCK",
             value : {
@@ -34,7 +34,7 @@ const init = {
 }
 
 
-export const AppReducer = function(state, action) {
+export const AppReducer = function (state, action) {
 
     if (typeof state === "undefined") {
         init.blockChain = new BlockChain();
@@ -62,23 +62,21 @@ export const AppReducer = function(state, action) {
 
     let index;
     switch (action.type) {
-        case "ADD_BLOCK":
-            newState.blockChain.push(action.value);
-            break;
-        case "DELETE_BLOCK":
-            index = newState.blockChain.toList().indexOf(action.value);
-            newState.blockChain.$getRawList().splice(index, 1);
-            break;
-        case "TAMPER_BLOCK":
-            let block = action.value.block;
-            let newBlockData = action.value.newData;
-            block.$tamper(newBlockData);
-            break;
-        case "DELETE_RECORDS":
-            newState.blockChain = new BlockChain();
-            break;
-        default:
-            break;
+    case "ADD_BLOCK":
+        newState.blockChain.push(action.value);
+        break;
+    case "DELETE_BLOCK":
+        index = newState.blockChain.toList().indexOf(action.value);
+        newState.blockChain.$getRawList().splice(index, 1);
+        break;
+    case "TAMPER_BLOCK":
+        action.value.block.$tamper(action.value.newData);
+        break;
+    case "DELETE_RECORDS":
+        newState.blockChain = new BlockChain();
+        break;
+    default:
+        break;
     }
     return newState;
 }

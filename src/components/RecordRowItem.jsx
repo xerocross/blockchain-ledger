@@ -15,23 +15,22 @@ class RecordRowItem extends Component {
                     </div>
                     <div className="col-sm-4">
                         <div>
-                        <button 
-                            className = "btn btn-secondary btn-sm"
-                            onClick = {() => {this.props.tamper(block)}}
-                        >
+                            <button 
+                                className = "btn btn-secondary btn-sm"
+                                onClick = {() => {this.props.tamper(block)}}
+                            >
                             tamper
-                        </button>
-                        <button 
-                            className = "btn btn-secondary btn-sm"
-                            onClick = {() => {this.props.delete(block)}}
-                        >
+                            </button>
+                            <button 
+                                className = "btn btn-secondary btn-sm"
+                                onClick = {() => {this.props.delete(block)}}
+                            >
                             delete
-                        </button>
+                            </button>
                         </div>
                     </div>
                 </div>
                 <div className = "row">
-
                     <div className="col-sm-4">
                         Date: {block.getCreationDate()}
                     </div>

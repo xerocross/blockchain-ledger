@@ -1,17 +1,11 @@
-import Block from "./Block.js";
-
 const BlockChain = function () {
     let _blockList = [];
 
-    // let wrap = function(block) {
-
-    // }
-
-    this.$getRawList = function() {
+    this.$getRawList = function () {
         return _blockList;
     }
 
-    this.$setRawList = function(chainList) {
+    this.$setRawList = function (chainList) {
         _blockList = chainList;
     }
 
@@ -25,7 +19,7 @@ const BlockChain = function () {
             _blockList.push(block);
         }
     }
-    this.get = function(i) {
+    this.get = function (i) {
         return _blockList[i];
     }
     this.validateBlock = function (block) {
@@ -35,20 +29,20 @@ const BlockChain = function () {
         } else if (index === 0) {
             return true;
         } else {
-            let previous = _blockList[index-1];
+            let previous = _blockList[index - 1];
             return (previous.getHash() === block.getPreviousBlockHash());
         }
 
     }
-    this.clone = function() {
+    this.clone = function () {
         let newBC = new BlockChain();
         newBC.$setRawList(_blockList._clone());
         return newBC;
     }
-    this.toList = function() {
+    this.toList = function () {
         return _blockList._clone();
     }
-    this.toJSON = function() {
+    this.toJSON = function () {
         return _blockList;
     }
 }

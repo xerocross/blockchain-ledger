@@ -1,16 +1,14 @@
-function bottle(state) {
+function bottle (state) {
     let data = JSON.stringify(state);
     return data;
 }
 
-function unbottle(stateString) {
+function unbottle (stateString) {
     try {
         let parsedState = JSON.parse(stateString);
         return parsedState;
     }
     catch (e) {
-        //alert("encountered corrupt data");
-        console.log(e);
         return null;
     }
 }
