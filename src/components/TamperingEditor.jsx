@@ -1,17 +1,15 @@
-// eslint-disable-next-line no-unused-vars
+import PropTypes from "prop-types";
 import React,{Component} from "react";
 import TextContent from "../text-content.js";
 
 class TamperingEditor extends Component {
     constructor () {
         super();
-
         this.state = {
             text : "",
             creationDate : "",
             previousBlockHash : ""
         }
-
         this.componentDidMount = this.componentDidMount.bind(this);
         this.handleTextInput = this.handleTextInput.bind(this);
         this.handleDateInput = this.handleDateInput.bind(this);
@@ -22,9 +20,9 @@ class TamperingEditor extends Component {
     componentDidMount () {
         let block = this.props.block;
         this.setState({
-            text : block.text,
-            creationDate : block.creationDate,
-            previousBlockHash : block.previousBlockHash
+            text : block.getText(),
+            creationDate : block.getCreationDate(),
+            previousBlockHash : block.getPreviousBlockHash()
         });
     }
 
@@ -38,7 +36,6 @@ class TamperingEditor extends Component {
     updateHash (newText) {
         this.setState({previousBlockHash : newText});
     }
-
     handleTextInput (event) {
         this.updateText(event.target.value);
     }
@@ -74,6 +71,7 @@ class TamperingEditor extends Component {
                             <div className = "col-sm-9">
                                 <input
                                     name = "newBlockTextInput"
+                                    data-testid = "record-text"
                                     type = "text"
                                     className = "form-control newBlockTextInput"
                                     value={this.state.text}
@@ -89,6 +87,7 @@ class TamperingEditor extends Component {
                             <div className = "col-sm-9">
                                 <input
                                     name = "newBlockDateInput"
+                                    data-testid = "creation-date-input"
                                     type = "text"
                                     className = "form-control newBlockDateInput"
                                     value={this.state.creationDate}
@@ -104,6 +103,7 @@ class TamperingEditor extends Component {
                             <div className = "col-sm-9">
                                 <input
                                     name = "newBlockHashInput"
+                                    data-testid = "previous-record-hash"
                                     type = "text"
                                     className = "form-control newBlockDateInput"
                                     value={this.state.previousBlockHash}
@@ -115,6 +115,7 @@ class TamperingEditor extends Component {
                         <input 
                             type = "submit" 
                             className = "btn btn-primary"
+                            data-testid = "save-button"
                             value = "save tampered data"
                         />
                         <div >
@@ -127,4 +128,8 @@ class TamperingEditor extends Component {
         );
     }
 }
+TamperingEditor.propTypes = {
+    block : PropTypes.object,
+    recordTampering : PropTypes.func
+};
 export default TamperingEditor;

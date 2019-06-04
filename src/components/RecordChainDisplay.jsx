@@ -1,7 +1,7 @@
 import React,{Component} from "react";
 import "./BlockChainDisplay.css";
 import ChainCorruptedMessage from "./ChainCorruptedMessage";
-import RecordChainTable from "./RecordChainTable";
+import RecordChainList from "./RecordChainList";
 
 class RecordChainDisplay extends Component {
     constructor () {
@@ -36,7 +36,7 @@ class RecordChainDisplay extends Component {
                         { !this.getIsListValid() &&
                             <ChainCorruptedMessage />
                         }
-                        <RecordChainTable 
+                        <RecordChainList 
                             blockChain = {chain}
                             tamper = {this.props.tamper}
                             delete = {this.props.delete}

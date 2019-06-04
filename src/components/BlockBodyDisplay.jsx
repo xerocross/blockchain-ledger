@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import React,{Component} from "react";
 
 class BlockBodyDisplay extends Component {
@@ -23,4 +24,7 @@ class BlockBodyDisplay extends Component {
         );
     }
 }
+BlockBodyDisplay.propTypes = {
+    block: PropTypes.object
+};
 export default BlockBodyDisplay;
