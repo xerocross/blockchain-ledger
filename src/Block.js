@@ -14,35 +14,35 @@ var Block = function (text) {
     }
 
     Object.defineProperty(this, `id`, { 
-        get: function() { return this._id} 
+        get: function () { return this._id} 
     });
 
-    this.getText = function() {
+    this.getText = function () {
         return _text;
     }
     Object.defineProperty(self, `text`, { 
-        get: function() { return _text; } 
+        get: function () { return _text; } 
     });
  
-    this.getHash = function() {
+    this.getHash = function () {
         return hash(_text + _creationDate + _previousBlockHash);
     }
     
 
 
-    this.getCreationDate = function() {
+    this.getCreationDate = function () {
         return _creationDate;
     }
 
     Object.defineProperty(self, `creationDate`, { 
-        get: function() { return _creationDate} 
+        get: function () { return _creationDate} 
     });
 
-    this.getPreviousBlockHash = function() {
+    this.getPreviousBlockHash = function () {
         return _previousBlockHash;
     }
     Object.defineProperty(self, `previousBlockHash`, { 
-        get: function() { return _previousBlockHash} 
+        get: function () { return _previousBlockHash} 
     });
 
 
@@ -59,7 +59,7 @@ var Block = function (text) {
         }
     }
 
-    this.$tamper = function(tamperObject) {
+    this.$tamper = function (tamperObject) {
         ({ _id, _hash, _previousBlockHash, _creationDate, _text} = tamperObject);
     }
 
@@ -73,7 +73,7 @@ var Block = function (text) {
         });
     }
 
-    this.toJSON = function() {
+    this.toJSON = function () {
         return {
             _text: _text,
             _id: _id,

@@ -73,7 +73,7 @@ class BlockchainLedger extends Component {
 
     render () {
         return (
-            <div className="App container">
+            <div className="App">
                 {this.state.tampering === null &&
               <div>
                   <BlockWriter

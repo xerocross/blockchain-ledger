@@ -2,7 +2,7 @@
 import {cleanup,render} from '@testing-library/react';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import RecordChainList from "./RecordChainList";
+import RecordChainDisplay from "./RecordChainDisplay";
 import Blockchain from "../BlockChain";
 import Block from "../Block";
 import $ from "jquery";
@@ -38,20 +38,10 @@ afterEach(() => {
 
 test('renders without crashing', () => {
     expect( ()=>{
-        render(<RecordChainList
+        render(<RecordChainDisplay
             blockChain = {blockChain}
             delete = {deleteFunc}
             tamper = {tamperFunc}
         />);
     }).not.toThrow(); 
-});
-
-test('num li elements matches length of blockchain', () => {
-    ({getByTestId} = render(<RecordChainList
-        blockChain = {blockChain}
-        delete = {deleteFunc}
-        tamper = {tamperFunc}
-    />));
-    let el = getByTestId("recordchain-list-ul");
-    expect($("li", el)).toHaveLength(3);
 });

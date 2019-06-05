@@ -74,7 +74,7 @@ class BlockEditor extends Component {
 
     render () {
         return (
-            <div className="BlockWriter">
+            <div className="BlockWriter" data-testid = "BlockWriter">
                 <div>
                     <form
                         onSubmit = {this.handleSubmit}
@@ -82,11 +82,13 @@ class BlockEditor extends Component {
                         <input
                             name = "newBlockTextInput"
                             className = "form-control newBlockTextInput"
+                            data-testid = "newBlockTextInput"
                             value={this.state.text}
                             onChange={this.handleTextInput}
                         />
                         <input 
                             type = "submit" 
+                            data-testid = "submit-button"
                             className = "btn btn-primary"
                             value = "attach new record"
                         />

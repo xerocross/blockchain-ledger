@@ -1,3 +1,5 @@
+import "./javascript-fixes";
+
 const BlockChain = function () {
     let _blockList = [];
 

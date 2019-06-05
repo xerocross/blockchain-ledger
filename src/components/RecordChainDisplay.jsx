@@ -1,7 +1,8 @@
 import React,{Component} from "react";
-import "./BlockChainDisplay.css";
+import "./RecordChainDisplay.css";
 import ChainCorruptedMessage from "./ChainCorruptedMessage";
 import RecordChainList from "./RecordChainList";
+import PropTypes from "prop-types";
 
 class RecordChainDisplay extends Component {
     constructor () {
@@ -25,6 +26,7 @@ class RecordChainDisplay extends Component {
                 <div className = "delete-button-row">
                     <button
                         className = "btn btn-danger"
+                        data-testid = "delete-all-button"
                         onClick = {this.props.deleteAll}
                     >
                         delete all records
@@ -48,5 +50,9 @@ class RecordChainDisplay extends Component {
 
     }
 }
-
+RecordChainDisplay.propTypes = {
+    blockChain : PropTypes.object,
+    tamper : PropTypes.func,
+    delete : PropTypes.func,
+};
 export default RecordChainDisplay;

@@ -1,11 +1,15 @@
 import React,{Component} from "react";
 import RecordRowItem from "./RecordRowItem";
+import PropTypes from "prop-types";
 
-class RecordChainTable extends Component {
+class RecordChainList extends Component {
     render () {
         let chain = this.props.blockChain;
         return (
-            <ul className = "list-group">
+            <ul 
+                className = "list-group" 
+                data-testid = "recordchain-list-ul"
+            >
                 {
                     chain.toList()._reverse().map( (block) => {
                         return (
@@ -20,8 +24,12 @@ class RecordChainTable extends Component {
                     })
                 }
             </ul>
-
         );
     }
 }
-export default RecordChainTable;
+RecordChainList.propTypes = {
+    blockChain : PropTypes.object,
+    tamper : PropTypes.func,
+    delete : PropTypes.func
+};
+export default RecordChainList;

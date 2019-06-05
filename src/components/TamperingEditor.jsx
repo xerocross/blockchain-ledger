@@ -57,7 +57,7 @@ class TamperingEditor extends Component {
 
     render () {
         return (
-            <div className="TamperingEditor">
+            <div className="TamperingEditor" data-testid = "TamperingEditor">
                 <h3>Record Tampering</h3>
                 <p className = "alert alert-info">change anything you want</p>
                 <div>
